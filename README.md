@@ -38,9 +38,19 @@ The Vite-built React frontend and API are served by one Cloudflare Worker. D1 st
 
 **Stack:** React, TypeScript, Vite, Cloudflare Workers, Cloudflare D1, Wrangler, and Vitest.
 
-## Screenshots
+These screenshots demonstrate simulated monitoring, not live website monitoring.
 
-Screenshots are not yet included. The [screenshot guide](docs/screenshots/README.md) describes suggested views and what to review before publishing images. The [live demo](https://pulseops.shaddaisec.com) is available now.
+### Dashboard
+![PulseOps Dashboard](docs/screenshots/Dashboard.png)
+
+### Active Incident
+![PulseOps Active Incident](docs/screenshots/Active-incident.png)
+
+### Incident History
+![PulseOps Incident History](docs/screenshots/Incident%20history.png)
+
+### Recovery
+![PulseOps Recovery](docs/screenshots/Recovery.png) The [live demo](https://pulseops.shaddaisec.com) is available now.
 
 ## Run locally
 
