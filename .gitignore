@@ -1,0 +1,37 @@
+# Dependencies and build output
+node_modules/
+dist/
+dist-worker/
+.wrangler/
+
+# Local secrets and credentials
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+
+# Local databases and backup files
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+
+# Local tooling and OS files
+.DS_Store
+npm-debug.log*
+.aws/
+.ssh/
+.npmrc
+*.log
+*.bak
+*.backup

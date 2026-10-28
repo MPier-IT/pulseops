@@ -1,0 +1,16 @@
+name = "pulseops"
+main = "worker/index.ts"
+compatibility_date = "2025-01-24"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+# No cron trigger: live monitoring is intentionally disabled.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pulseops-db"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"

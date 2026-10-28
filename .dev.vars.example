@@ -1,0 +1,10 @@
+# Required for local administrator login: replace with your own unique,
+# randomly chosen password of at least 16 characters in .dev.vars.
+# Do not put your real password in this example file or commit .dev.vars.
+ADMIN_PASSWORD=""
+
+# Optional local email provider settings. Leave unset unless you are testing
+# the Resend integration with your own verified sender and credentials.
+# EMAIL_API_KEY=""
+# EMAIL_FROM=""
+# EMAIL_TO=""

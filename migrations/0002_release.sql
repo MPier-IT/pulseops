@@ -1,0 +1,21 @@
+-- Existing records are retained as demonstration data.
+ALTER TABLE services ADD COLUMN mode TEXT NOT NULL DEFAULT 'demo' CHECK(mode IN ('demo','real'));
+ALTER TABLE services ADD COLUMN paused INTEGER NOT NULL DEFAULT 0 CHECK(paused IN (0,1));
+ALTER TABLE services ADD COLUMN deleted INTEGER NOT NULL DEFAULT 0 CHECK(deleted IN (0,1));
+ALTER TABLE services ADD COLUMN interval_minutes INTEGER NOT NULL DEFAULT 5 CHECK(interval_minutes BETWEEN 5 AND 1440);
+ALTER TABLE services ADD COLUMN failure_threshold INTEGER NOT NULL DEFAULT 2 CHECK(failure_threshold BETWEEN 1 AND 10);
+ALTER TABLE services ADD COLUMN consecutive_failures INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE services ADD COLUMN last_success_at TEXT;
+ALTER TABLE services ADD COLUMN last_checked_at TEXT;
+ALTER TABLE services ADD COLUMN next_check_at TEXT;
+ALTER TABLE checks ADD COLUMN http_status INTEGER;
+ALTER TABLE checks ADD COLUMN failure_reason TEXT;
+ALTER TABLE checks ADD COLUMN mode TEXT NOT NULL DEFAULT 'demo' CHECK(mode IN ('demo','real'));
+ALTER TABLE incidents ADD COLUMN mode TEXT NOT NULL DEFAULT 'demo' CHECK(mode IN ('demo','real'));
+CREATE INDEX services_due ON services(mode, deleted, paused, next_check_at);
+CREATE INDEX checks_mode_time ON checks(mode, checked_at DESC);
+CREATE INDEX incidents_mode_time ON incidents(mode, started_at DESC);
+CREATE TABLE sessions (token_hash TEXT PRIMARY KEY, expires_at TEXT NOT NULL, created_at TEXT NOT NULL);
+CREATE INDEX sessions_expiry ON sessions(expires_at);
+CREATE TABLE login_attempts (key TEXT PRIMARY KEY, attempts INTEGER NOT NULL, window_start INTEGER NOT NULL);
+CREATE TABLE notifications (id TEXT PRIMARY KEY, incident_id TEXT NOT NULL REFERENCES incidents(id), kind TEXT NOT NULL CHECK(kind IN ('outage','recovery')), status TEXT NOT NULL, created_at TEXT NOT NULL, detail TEXT, UNIQUE(incident_id, kind));
